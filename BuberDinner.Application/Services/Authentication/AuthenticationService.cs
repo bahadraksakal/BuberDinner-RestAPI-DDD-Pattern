@@ -1,11 +1,6 @@
 ﻿using BuberDinner.Application.Common.Interfaces.Authentication;
 using BuberDinner.Application.Common.Interfaces.Persistence;
 using BuberDinner.Domain.Entities;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace BuberDinner.Application.Services.Authentication
 {
@@ -22,12 +17,12 @@ namespace BuberDinner.Application.Services.Authentication
 
         public AuthenticationResult Login(string email, string password)
         {
-            if(_userRepository.GetUserByEmail(email) is not User user)
+            if (_userRepository.GetUserByEmail(email) is not User user)
             {
                 throw new Exception("User does not exist");
             }
 
-            if(user.Password != password)
+            if (user.Password != password)
             {
                 throw new Exception("Invalid password");
             }
@@ -41,7 +36,7 @@ namespace BuberDinner.Application.Services.Authentication
         public AuthenticationResult Register(string firstname, string lastname, string email, string password)
         {
             //check if user is already registered
-            if(_userRepository.GetUserByEmail(email) != null)
+            if (_userRepository.GetUserByEmail(email) != null)
             {
                 throw new Exception("User already exists");
             }
